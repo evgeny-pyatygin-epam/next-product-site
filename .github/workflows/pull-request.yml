@@ -6,8 +6,8 @@ on:
     branches: [main]
 
 env:
-  NODE_VERSION: 18.x
-  PNPM_VERSION: 8
+  NODE_VERSION: 22.x
+  PNPM_VERSION: 9
 
 jobs:
   build:
