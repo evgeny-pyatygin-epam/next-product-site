@@ -11,7 +11,7 @@ export type { BadgeProps } from './Badge';
 export { ProgressBar, CircularProgress } from './ProgressBar';
 export type { ProgressBarProps } from './ProgressBar';
 
-export { Skeleton, CourseCardSkeleton, CourseListSkeleton } from './Loading';
+export { Skeleton } from './Loading';
 
 export { InputField, TextArea } from './InputField';
 export type { InputFieldProps } from './InputField';
