@@ -1,31 +1,33 @@
 import type { Config } from 'jest';
 import { pathsToModuleNameMapper } from 'ts-jest';
+import { readFileSync } from 'fs';
+import { resolve } from 'path';
 
-const { compilerOptions } = require('./tsconfig.json');
+// Read tsconfig.json via fs instead of require to avoid ES module conflicts
+const tsconfig = JSON.parse(
+  readFileSync(resolve(__dirname, './tsconfig.json'), 'utf-8')
+);
+const { compilerOptions } = tsconfig;
 
 const config: Config = {
-  preset: 'ts-jest', // Добавьте preset
-  testEnvironment: 'jsdom', // Для React компонентов
+  preset: 'ts-jest',
+  testEnvironment: 'jsdom',
   setupFiles: ['<rootDir>/tests/setupJest.ts'],
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json'],
   moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, { prefix: '<rootDir>/' }),
-
   transform: {
     '^.+\\.(ts|tsx)$': [
       'ts-jest',
       {
         tsconfig: {
-          jsx: 'react', // Или 'react-jsx' для React 17+
+          jsx: 'react',
         },
       },
     ],
   },
-
   verbose: true,
   passWithNoTests: true,
-
   testPathIgnorePatterns: ['/node_modules/', '/e2e/', '\\.spec\\.(ts|tsx)$'],
-
   testMatch: ['**/__tests__/**/*.(test|spec).(ts|tsx)', '**/*.(test|spec).(ts|tsx)'],
 };
 
