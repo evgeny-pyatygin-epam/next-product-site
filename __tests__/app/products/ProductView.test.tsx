@@ -7,6 +7,7 @@ import { ProductDetails } from '@/src/type/products';
 // Mock Next.js Image component
 jest.mock('next/image', () => ({
   __esModule: true,
+  // eslint-disable-next-line @next/next/no-img-element
   default: (props: any) => <img {...props} />,
 }));
 
@@ -179,6 +180,6 @@ describe('ProductView', () => {
 
     render(<ProductView product={productWithoutImage} />);
     const image = screen.getByAltText('Image info');
-    expect(image).toHaveAttribute('src', '/public/media/manufacturing-facility.jpg');
+    expect(image).toHaveAttribute('src', '/media/manufacturing-facility.jpg');
   });
 });

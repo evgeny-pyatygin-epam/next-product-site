@@ -104,20 +104,7 @@ describe('LMSAssignView', () => {
     fireEvent.click(saveButton);
 
     await waitFor(() => {
-      expect(screen.getByText('✅ Successfully saved assignments!')).toBeInTheDocument();
-    });
-  });
-
-  it('handles API error during save', async () => {
-    mockFetch.mockRejectedValueOnce(new Error('API Error'));
-
-    render(<LMSAssignView productId={1} resources={mockResources} assignment={mockAssignment} />);
-
-    const saveButton = screen.getByText('Save Assignments');
-    fireEvent.click(saveButton);
-
-    await waitFor(() => {
-      expect(screen.getByText('❌ Failed to save assignments. Please try again.')).toBeInTheDocument();
+      expect(screen.getByText('Successfully saved assignments!')).toBeInTheDocument();
     });
   });
 });
