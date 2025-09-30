@@ -3,9 +3,9 @@ import { pathsToModuleNameMapper } from 'ts-jest';
 import { readFileSync } from 'fs';
 import { resolve } from 'path';
 
-// Read tsconfig.json via fs instead of require to avoid ES module conflicts
+// Read tsconfig.json using process.cwd() for current working directory
 const tsconfig = JSON.parse(
-  readFileSync(resolve(__dirname, './tsconfig.json'), 'utf-8')
+  readFileSync(resolve(process.cwd(), './tsconfig.json'), 'utf-8')
 );
 const { compilerOptions } = tsconfig;
 
